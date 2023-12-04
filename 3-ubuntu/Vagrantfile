@@ -1,0 +1,44 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+
+  # Cấu hình chung cho tất cả máy ảo
+  config.vm.box = "ubuntu/bionic64"
+  config.vm.provider "virtualbox" do |v|
+    v.memory = 2048
+    v.cpus = 1
+  end
+
+  # Cài đặt Docker và Docker Compose
+  $script = <<-SCRIPT
+    sudo apt-get update
+    sudo apt-get install -y apt-transport-https ca-certificates curl software-properties-common
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+    sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+    sudo apt-get update
+    sudo apt-get install -y docker-ce docker-ce-cli containerd.io
+    sudo curl -L "https://github.com/docker/compose/releases/download/1.27.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+    sudo chmod +x /usr/local/bin/docker-compose
+  SCRIPT
+
+  # Cấu hình cho từng máy ảo
+  config.vm.define "manager01" do |manager01|
+    manager01.vm.hostname = "manager01"
+    manager01.vm.network "private_network", ip: "192.168.56.101"
+    manager01.vm.provision "shell", inline: $script
+  end
+
+  config.vm.define "manager02" do |manager02|
+    manager02.vm.hostname = "manager02"
+    manager02.vm.network "private_network", ip: "192.168.56.102"
+    manager02.vm.provision "shell", inline: $script
+  end
+
+  config.vm.define "worker01" do |worker01|
+    worker01.vm.hostname = "worker01"
+    worker01.vm.network "private_network", ip: "192.168.56.103"
+    worker01.vm.provision "shell", inline: $script
+  end
+
+end
