@@ -1,7 +1,7 @@
 # Hướng dẫn nhanh về vagrant
 Đầu tiên cần có 3 máy ảo ubuntu trên oracle virtual box. Ta sẽ sử dụng vagrant để tạo 3 máy này với cấu hình 2gb ram, 1 cpu, bên cạnh đó cài sẵn docker và docker-compose lên 3 máy này.
 
-Vagrantfile để tạo 3 máy ảo ubuntu nói trên ở đây.
+Vagrantfile để tạo 3 máy ảo ubuntu nói trên ở [đây](https://github.com/lekien-2803/docker-swarm-practice/tree/main/3-ubuntu).
 
 cd vào folder `3-ubuntu` nơi chứa Vagrantfile, mở terminal lên và dùng lệnh để khởi tạo 3 máy ảo:
 ```
