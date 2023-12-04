@@ -6,6 +6,10 @@ services:
     ports:
       - "8080:8080"
     deploy:
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.myapp.rule=Host(`myapp.com`)"
+        - "traefik.http.services.myapp.loadbalancer.server.port=8080"
       replicas: 3
     networks:
       - my-overlay
