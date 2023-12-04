@@ -1,38 +1,65 @@
 # Thực hành với docker-swarm
-## I. Easy
-### 1. Triển khai các ứng dụng lên docker-swarm với 3 máy ubuntu.
-- Yêu cầu: triển khai một số image đơn giản có sẵn image trên docker hub như portainer, traefik, registry
+*Yêu cầu: Đã có 3 máy ảo ubuntu, chi tiết có thể tham khảo tại đây.*
+## I. Cơ bản
+### 1. Cài đặt Docker 
 
-Đầu tiên cần có 3 máy ảo ubuntu trên oracle virtual box. Ta sẽ sử dụng vagrant để tạo 3 máy này với cấu hình 2gb ram, 1 cpu, bên cạnh đó cài sẵn docker và docker-compose lên 3 máy này.
+Vì trong Vagrantfile đã có sẵn lệnh khởi chạy cài đặt docker rồi nên ta không cần cài thủ công nữa.
 
-Vagrantfile để tạo 3 máy ảo ubuntu nói trên ở đây.
+### 2. Tạo một Swarm Cluster
 
-cd vào folder `3-ubuntu` nơi chứa Vagrantfile, mở terminal lên và dùng lệnh để khởi tạo 3 máy ảo:
+Khởi tạo docker swarm với lệnh:
 ```
-vagrant up
-```
-
-Lần sau khi đã tạo được máy ảo rồi thì vẫn dùng lệnh này để khởi động máy ảo, bởi lệnh này vừa để khởi động, vừa có thể cập nhật mới.
-
-Nếu muốn tắt máy ảo đi thì dùng lệnh:
-```
-vagrant halt
+docker swarm init --advertise-addr <ip của máy làm manager>
 ```
 
-Muốn xóa hẳn máy ảo thì dùng lệnh:
+Sau khi lệnh được thực thi, sẽ có một câu lệnh được trả về có dạng:
 ```
-vagrant destroy
+Swarm initialized: current node (rh9krtfftxhjvb25t7k6y8gxs) is now a manager.
+
+To add a worker to this swarm, run the following command:
+
+    docker swarm join --token SWMTKN-1-0t08e9l15ta4refv1y7jms78er7iguz8wsdrdjunkitylh5wrf-63zl0jxp7retpn7ov6sequk3e 192.168.56.101:2377
+
+To add a manager to this swarm, run 'docker swarm join-token manager' and follow the instructions.
 ```
 
-Sau khi khởi tạo được 3 máy ảo, vẫn tại terminal đó, ta dùng lệnh để truy cập vào máy ảo:
+*Lưu ý: đoạn token này ở máy của bạn có thể khác ví dụ.*
+
+Lấy token dành cho worker:
 ```
-vagrant ssh <tên máy ảo>
+docker swarm join-token worker
 ```
 
-Ví dụ ở đây ta có ba máy tên là: `manager01`, `manager02`, `worker01`. Ta sẽ truy cập vào `manager01`, nhớ là chuyển sang root để có quyền cao nhất:
+Lấy token dành cho manager:
 ```
-sudo -i
+docker swarm join-token manager
 ```
 
-Ta cd vào `/home/vagrant`
+Mở thêm tab terminal để truy cập vào máy `manager02` và `worker01`. Tại máy `worker01` ta sẽ sử dụng đoạn lệnh
+```
+docker swarm join --token SWMTKN-1-0t08e9l15ta4refv1y7jms78er7iguz8wsdrdjunkitylh5wrf-63zl0jxp7retpn7ov6sequk3e 192.168.56.101:2377
+```
+để biến máy `worker01` trở thành worker node trong docker swarm, làm tương tự với máy `manager02` nhưng sử dụng token dành cho manager.
+
+Sử dụng lệnh để kiểm tra thông tin các node:
+```
+docker node ls
+
+ID                            HOSTNAME    STATUS    AVAILABILITY   MANAGER STATUS   ENGINE VERSION
+29fdrzibeubab1jc6nf25lotd *   manager01   Ready     Active         Leader           24.0.2
+n0ddmq3i2knka9k0scnpl90q8     manager02   Ready     Active         Reachable        24.0.2
+uejoqcuzhomza7jaztjvyzzfj     worker01    Ready     Active                          24.0.2
+```
+
+### 3. Deploy một Service đơn giản
+
+Trong bài này, chúng ta sẽ sử dụng nginx, một web server phổ biến, làm service để deploy.
+
+Trên máy Manager, hãy mở terminal và chạy lệnh sau để tạo một service mới với tên my-web:
+
+```
+docker service create --name my-web --publish 8081:80 nginx
+```
+
+Ở đây, `--publish 8081:80`` nghĩa là chúng ta đang map cổng 8081 trên máy host (Swarm manager) tới cổng 80 trên container nginx.
 
