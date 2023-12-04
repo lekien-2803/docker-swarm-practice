@@ -4,18 +4,20 @@ Trong bài này, chúng ta sẽ sử dụng nginx, một web server phổ biến
 
 Trên máy Manager, hãy mở terminal và chạy lệnh sau để tạo một service mới với tên my-web:
 
-```
+```bash
 docker service create --name my-web --publish 8081:80 nginx
 ```
 
 Ở đây, `--publish 8081:80`` nghĩa là chúng ta đang map cổng 8081 trên máy host (Swarm manager) tới cổng 80 trên container nginx.
 
 Để kiểm tra ta dùng lệnh:
-```
+
+```bash
 docker service ls
 ```
 Kết quả:
-```
+
+```bash
 ID             NAME            MODE         REPLICAS   IMAGE                           PORTS
 jdf9lqt5nsgf   my-web          replicated   1/1        nginx:latest                    *:8081->80/tcp
 ```
@@ -25,12 +27,12 @@ Giờ hãy mở trình duyệt web trên máy thật, gõ url `192.168.56.101:80
 ![nginx](nginx-browser.png)
 
 Hoặc ở trong máy ảo manager bạn cũng có thể gõ lệnh:
-```
+```bash
 curl localhost:8081
 ```
 
 Kết quả:
-```
+```html
 <!DOCTYPE html>
 <html>
 <head>
@@ -57,7 +59,7 @@ Commercial support is available at
 ```
 
 Nếu có vấn đề, bạn có thể xem logs của service bằng cách sử dụng:
-```
+```bash 
 docker service logs my-web
-//my-web là tên của service bạn muốn xem logs
+# my-web là tên của service bạn muốn xem logs
 ```
