@@ -75,7 +75,7 @@ jdf9lqt5nsgf   my-web          replicated   1/1        nginx:latest             
 
 Giờ hãy mở trình duyệt web trên máy thật, gõ url `192.168.56.101:8081` (192.168.56.101 chính là ip tĩnh của máy `manager01`) các bạn sẽ thấy giao diện của Nginx:
 
-![nginx](image.png)
+![nginx](./image/nginx-browser.png)
 
 Hoặc ở trong máy ảo manager bạn cũng có thể gõ lệnh:
 ```
@@ -108,3 +108,5 @@ Commercial support is available at
 </body>
 </html>
 ```
+
+aaaa
