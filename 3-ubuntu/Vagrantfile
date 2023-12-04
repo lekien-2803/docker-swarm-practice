@@ -24,19 +24,19 @@ Vagrant.configure("2") do |config|
 
   # Cấu hình cho từng máy ảo
   config.vm.define "manager01" do |manager01|
-    manager01.vm.hostname = "manager01"
+    manager01.vm.hostname = "manager01" # Tên máy ảo
     manager01.vm.network "private_network", ip: "192.168.56.101"
     manager01.vm.provision "shell", inline: $script
   end
 
   config.vm.define "manager02" do |manager02|
-    manager02.vm.hostname = "manager02"
+    manager02.vm.hostname = "manager02" # Tên máy ảo
     manager02.vm.network "private_network", ip: "192.168.56.102"
     manager02.vm.provision "shell", inline: $script
   end
 
   config.vm.define "worker01" do |worker01|
-    worker01.vm.hostname = "worker01"
+    worker01.vm.hostname = "worker01" # Tên máy ảo
     worker01.vm.network "private_network", ip: "192.168.56.103"
     worker01.vm.provision "shell", inline: $script
   end
