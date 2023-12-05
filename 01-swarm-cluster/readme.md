@@ -1,12 +1,12 @@
 # Tạo một Swarm Cluster
 
 Khởi tạo docker swarm với lệnh:
-```
+```bash
 docker swarm init --advertise-addr <ip của máy làm manager>
 ```
 
 Sau khi lệnh được thực thi, sẽ có một câu lệnh được trả về có dạng:
-```
+```bash 
 Swarm initialized: current node (rh9krtfftxhjvb25t7k6y8gxs) is now a manager.
 
 To add a worker to this swarm, run the following command:
