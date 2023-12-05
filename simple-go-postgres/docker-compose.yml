@@ -10,14 +10,14 @@ services:
         - "traefik.enable=true"
         - "traefik.http.routers.myapp.rule=Host(`myapp.com`)"
         - "traefik.http.services.myapp.loadbalancer.server.port=8080"
-      replicas: 3
+      replicas: 1
     networks:
       - my-overlay
 
   postgres:
     image: postgres:latest
     environment:
-      POSTGRES_USER: user
+      POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
       POSTGRES_DB: mydb
     volumes:
