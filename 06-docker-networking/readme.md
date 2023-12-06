@@ -26,6 +26,10 @@ Deploy một service (ví dụ: một nginx web server) và kết nối nó vớ
 docker service create --name my-web-1-06 --network my-net-06 nginx
 ```
 
+Bấm vào service `my-web-01-06`:
+
+![Alt text](./images/first-service.png)
+
 Kéo xuống các bạn sẽ thấy Network đang sử dụng là `my-overlay-network`:
 
 ![Alt text](./images/network-check.png)
