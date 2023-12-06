@@ -48,6 +48,8 @@ Theo lý thuyết, nếu các services ở chung một network thì có thể "n
 
 Để kiểm tra xem các containers có thể giao tiếp với nhau qua overlay network hay không, bạn cần thực hiện exec vào một container và thử ping tới container khác.
 
+*Lưu ý: Làm đến đây có thể các bạn sẽ gặp bug, hãy sang tab [issue]() của repo này xem nhé.*
+
 Tìm một container đang chạy của service `my-web-1-06`:
 
 ```bash
@@ -87,5 +89,3 @@ Kết quả:
 ```
 
 Như vậy là đã ping được tới service `my-web-2-06`, tức là chúng ở chung một network.
-
-*Lưu ý: Làm đến đây có thể các bạn sẽ gặp bug, hãy sang tab [issue]() của repo này xem nhé.*
