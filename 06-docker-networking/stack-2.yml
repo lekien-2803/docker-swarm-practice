@@ -1,0 +1,13 @@
+version: '3.3'
+
+services:
+  web:
+    image: nginx
+    ports:
+      - "8085:8080"
+    networks:
+      - my-shared-network
+
+networks:
+  my-shared-network:
+    external: true
