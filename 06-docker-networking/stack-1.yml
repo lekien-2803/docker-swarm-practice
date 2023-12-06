@@ -9,5 +9,5 @@ services:
       - my-net-06
 
 networks:
-  my-shared-network:
+  my-net-06:
     external: true
