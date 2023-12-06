@@ -6,7 +6,7 @@ services:
     ports:
       - "8085:8080"
     networks:
-      - my-shared-network
+      - my-net-06
 
 networks:
   my-shared-network:
