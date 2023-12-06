@@ -8,7 +8,7 @@ Trên máy Manager, hãy mở terminal và chạy lệnh sau để tạo một s
 docker service create --name my-web --publish 8081:80 nginx
 ```
 
-Ở đây, `--publish 8081:80`` nghĩa là chúng ta đang map cổng 8081 trên máy host (Swarm manager) tới cổng 80 trên container nginx.
+Ở đây, `--publish 8081:80` nghĩa là chúng ta đang map cổng 8081 trên máy host (Swarm manager) tới cổng 80 trên container nginx.
 
 Để kiểm tra ta dùng lệnh:
 
