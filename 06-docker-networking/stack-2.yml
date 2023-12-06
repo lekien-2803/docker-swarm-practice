@@ -4,7 +4,7 @@ services:
   web:
     image: nginx
     ports:
-      - "8085:8080"
+      - "8086:8080"
     networks:
       - my-net-06
 
