@@ -1,0 +1,19 @@
+version: '3.3'
+
+services:
+  web:
+    image: nginx
+    ports:
+      - "80:80"
+    networks:
+      - webnet
+
+  database:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: my-secret-pw
+    networks:
+      - webnet
+
+networks:
+  webnet:
