@@ -17,3 +17,15 @@ docker stack deploy -c docker-compose.yml mystack
 
 Ở đây, `mystack` là tên bạn đặt cho stack của chúng ta.
 
+## 3. Kiểm tra Stack
+
+Bây giờ ta vào Portainer kiểm tra ở menu `Stacks`:
+
+![Alt text](./images/stack-menu.png)
+
+Vậy là `mystack` của chúng ta đã được deploy. 
+
+Bấm vào `mystack` để xem các services ở trong đó, replicas của mỗi services là bao nhiêu, hoạt động ở port nào:
+
+![Alt text](./images/my-stack.png)
+
