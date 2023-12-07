@@ -25,7 +25,3 @@ Trong logs, tìm kiếm các thông tin về lỗi, cảnh báo, hoặc các th�
 ### Xác định nguyên nhân của lỗi: 
 Nếu có lỗi, hãy sử dụng thông tin trong logs để xác định nguyên nhân và tìm cách giải quyết.
 
-## 3. Troubleshooting
-
-### Tích hợp với công cụ quản lý logs: 
-Đối với môi trường sản xuất, bạn có thể xem xét việc tích hợp Docker Swarm với một hệ thống quản lý logs như ELK Stack (Elasticsearch, Logstash, Kibana) hoặc Graylog để quản lý logs một cách hiệu quả và trực quan hơn.
