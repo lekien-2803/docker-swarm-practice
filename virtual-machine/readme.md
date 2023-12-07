@@ -2,7 +2,7 @@
 
 ## 1. Phần mềm Oracle VM Virtual Box
 
-Các bạn có thể tải phần mềm [tại đây](https://www.virtualbox.org/wiki/Downloads)
+Các bạn có thể tải phần mềm [tại đây](https://www.virtualbox.org/wiki/Downloads).
 
 ## 2. Vagrant
 
