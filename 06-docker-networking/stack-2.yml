@@ -1,7 +1,7 @@
 version: '3.3'
 
 services:
-  web:
+  web2:
     image: nginx
     ports:
       - "8086:8080"
