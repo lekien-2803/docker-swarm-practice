@@ -1,12 +1,13 @@
 Khi làm việc với Docker Swarm, chúng ta nên sử dụng Portainer để dễ dàng quản lý Docker environment. Bên cạnh đó chúng ta cũng cần sử dụng một reverse-proxy cũng như là load balancer, vậy nên ta sẽ sử dụng Traefik.
 
-Trong bài tập này, ta sẽ deploy hai service này lên cùng trong một stack. Trong đây đã có sẵn một file là `reverse-proxy`, file này chứa cấu hình của hai service trên.
+Trong bài tập này, ta sẽ deploy hai service này lên. Trong đây đã có sẵn một file là `reverse-proxy` chứa cấu hình traefik và một file `protainer-agent-stack` chứa cấu hình của portainer.
 
 ## 1. Cài đặt DNS
 
-Ở đây chúng ta sẽ cấu hình cho traefik sẽ được mở ở cổng 8888 với subdomain là `traefik.lc` và portainer được mở ở cổng 9000 với subdomain là `portainer.lc`.
+Để có thể theo vào được giao diện của `portainer` và `traefik` một cách trực quan nhất, ta sẽ truy cập thông qua browser trên máy thật. Nhưng thay vì cứ phải nhập địa chỉ ip `192.168.56.101` thì ta sẽ đổi nó thành một tên miền, cụ thể ở đây là `domain.lc`
 
 Bây giờ các bạn cần sửa file `/etc/hosts` trên máy thật của các bạn để có thể mở được các subdomain này. 
+
 ### 1.1 Với hệ điều hành linux/macOS thì cần sửa dưới quyền root với câu lệnh:
 
 ```bash
@@ -32,6 +33,8 @@ Vào chỉnh sửa file hosts, ta sẽ thêm hai subdomain ở trên với cú p
 ```bash
 <địa chỉ ip> <tên miền>
 ```
+
+Ví dụ ở đây tôi đặt tên miền là `domain.lc`
 
 ![Alt text](./images/edit-hosts.png)
 

@@ -1,28 +1,36 @@
-version: '3.7'
+version: '3.8'
 
 services:
   traefik:
-    image: traefik:v2.4
+    image: "traefik:v2.5"
     command:
-      - --api.insecure=true
-      - --providers.docker
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+      - "--providers.docker.swarmMode=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.web.address=:8889"
       - --entrypoints.web.address=:80
       - --entrypoints.websecure.address=:443
     ports:
       - "80:80"
-      - "443:443"
-      - "8888:8080"  
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
+      - "443:443"    
+      - "8889:8080"
+    networks:
+      - traefik-net
     deploy:
-      labels:
-        - "traefik.enable=true"
-        - "traefik.http.routers.api.rule=Host(`traefik.lc`)"  
-        - "traefik.http.routers.api.service=api@internal"
-      replicas: 1
+      mode: global
       placement:
-        constraints: [node.role == manager]
+        constraints:
+          - node.role == manager
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.traefik.rule=Host(`domain.lc`)"
+      - "traefik.http.routers.traefik.entrypoints=web"
+      - "traefik.http.routers.traefik.service=api@internal"
+      - "traefik.http.routers.traefik.middlewares=auth"
 
-volumes:
-  portainer_data:
-  registry_data:
+networks:
+  traefik-net:
+    external: true
