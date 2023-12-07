@@ -8,39 +8,33 @@ Trên máy `manager01` của Docker Swarm, mở terminal và chạy lệnh sau �
 docker network create --driver overlay my-net-06
 ```
 
-Trên Portainer, ta vào menu `Networks` kiểm tra xem có `my-overlay-net` hay chưa:
+Trên Portainer, ta vào menu `Networks` kiểm tra xem có `my-net-06` hay chưa:
 
-![Alt text](./images/my-overlay-network.png)
+![Alt text](./images/my-net-06.png)
 
-Bấm vào `my-overlay-network` để xem thông tin, ta thấy driver của network này là `overlay`.
+## 2. Deploy Services sử dụng Network vừa tạo
 
-![Alt text](./images/network-driver.png)
+Bây giờ ta sẽ deploy hai service đơn giản có sẵn trong folder 06 này. Hai service này sẽ được config dưới dạng file `YAML`, cụ thể ở đây là `stack1.yml` và `stack2.yml`
 
-## 2. Deploy Services sử dụng Overlay Network
-
-Bây giờ ta sẽ deploy một service đơn giản và kết nối với `my-overlay-network` vừa tạo.
-
-Deploy một service (ví dụ: một nginx web server) và kết nối nó với overlay network:
+Deploy service (ví dụ: một nginx web server) và kết nối nó với network vừa tạo ở trên:
 
 ```bash
-docker service create --name my-web-1-06 --network my-net-06 nginx
+docker stack deploy -c stack-1.yml stack-1
 ```
 
-Bấm vào service `my-web-01-06`:
+```bash
+docker stack deploy -c stack-2.yml stack-2
+```
+
+Bấm vào service `stack-1_web`:
 
 ![Alt text](./images/first-service.png)
 
-Kéo xuống các bạn sẽ thấy Network đang sử dụng là `my-overlay-network`:
+Kéo xuống các bạn sẽ thấy Network đang sử dụng là `my-net-06`:
 
 ![Alt text](./images/network-check.png)
 
-Giờ ta sẽ chạy thêm một container dạng `nginx` nữa để kiểm tra mạng, ta sẽ đặt tên service này là `my-web-2-06`:
-
-```bash
-docker service create --name my-web-2-06 --network my-net-06 nginx
-```
-
-![Alt text](./images/second-service.png)
+Các bạn kiểm tra tương tự với service `stack-2_web2`.
 
 ## 3. Kiểm tra kết nối mạng
 
@@ -50,42 +44,30 @@ Theo lý thuyết, nếu các services ở chung một network thì có thể "n
 
 *Lưu ý: Làm đến đây có thể các bạn sẽ gặp bug, hãy sang tab [issue]() của repo này xem nhé.*
 
-Tìm một container đang chạy của service `my-web-1-06`:
+Giờ ta sang menu `Container` và chọn `stack-2_web2`:
+
+![Alt text](./images/exec-web2.png)
+
+Sau đó chọn vào nút `Console`:
+
+![Alt text](./images/console.png)
+
+Chọn `Connect`:
+
+![Alt text](./images/connect.png)
+
+Sau đó gõ lệnh:
 
 ```bash
-docker ps
+ping stack-1_web
 ```
 
-Kết quả:
-```bash
-root@manager02:~# docker ps
-CONTAINER ID   IMAGE                           COMMAND                  CREATED       STATUS       PORTS                          NAMES
-c071e784e60c   nginx:latest                    "/docker-entrypoint.…"   4 hours ago   Up 4 hours   80/tcp                         my-web-1-06.1.r6ec5yq26plm5zlpg7xzegkeb
-ef1bf448c1e0   portainer/portainer-ce:latest   "/portainer -H unix:…"   6 hours ago   Up 6 hours   8000/tcp, 9000/tcp, 9443/tcp   reverse-proxy_portainer.1.l897aw149y7k47olb3y8oim9d
-```
+Ở đây, `stack-1_web` là tên service của `stack-1` ở trên, các bạn nhớ là ping tên hoặc id của service chứ không phải của container nhé.
 
-Exec vào container này (thay thế `[CONTAINER_ID]` với ID thực tế của container vừa tìm ở trên):
-
-```bash
-docker exec -it [CONTAINER_ID] /bin/bash
-```
-
-Sau khi "chui" vào được bên trong container rồi thì chúng ta dùng lệnh ping tới service `my-web-2-06`:
-
-```bash
-ping my-web-2-06
-```
-
-*Nhớ là ping tên/id service chứ không phải ping tới container nhé.
+Làm đến đây có thể các bạn sẽ gặp lỗi, hãy qua phần [issue](https://github.com/lekien-2803/docker-swarm-practice/issues/3) để xem cách giải quyết.
 
 Kết quả:
 
-```bash
-64 bytes from 10.0.4.5 (10.0.4.5): icmp_seq=1 ttl=64 time=0.042 ms
-64 bytes from 10.0.4.5 (10.0.4.5): icmp_seq=2 ttl=64 time=0.070 ms
-64 bytes from 10.0.4.5 (10.0.4.5): icmp_seq=3 ttl=64 time=0.053 ms
-64 bytes from 10.0.4.5 (10.0.4.5): icmp_seq=4 ttl=64 time=0.062 ms
-64 bytes from 10.0.4.5 (10.0.4.5): icmp_seq=5 ttl=64 time=0.057 ms
-```
+![Alt text](./images/result.png)
 
-Như vậy là đã ping được tới service `my-web-2-06`, tức là chúng ở chung một network.
+Như vậy là chúng ta đã ping được tới service còn lại cùng nằm trong network tên là `my-net-06`.
