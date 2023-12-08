@@ -35,12 +35,12 @@ docker stack deploy -c docker-compose.yml nginx
 ```
 
 Ok, giờ vào check xem nhé:
-![Alt text](services.png)
+![Alt text](./images/services.png)
 
 Kéo xuống dưới ta sẽ nhìn thấy `Configs` mà service này sử dụng:
 
-![Alt text](config.png)
+![Alt text](./images/config.png)
 
 Bạn cũng có thể xem danh sách `Configs` trong hệ thống tại đây:
 
-![Alt text](configs.png)
+![Alt text](./images/configs.png)
