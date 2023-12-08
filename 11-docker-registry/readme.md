@@ -39,6 +39,9 @@ Ngay cả khi chúng ta scale up thì cũng không thể hoạt động ở trê
 
 * Liên tục bị rejected
 
+Bấm vào các task bị rejected thì ta thấy:
+
+
 Vì vậy ta phải thiết lập Registry để các node khác cũng có thể sử dụng được image này.
 
 Trước hết thì nên xóa stack này đi đã:
@@ -86,5 +89,32 @@ Ta restart Docker Daemon trên mỗi node:
 ```bash
 sudo systemctl restart docker
 ```
+
+## 5. Deploy lại go-app
+
+Ta sẽ chỉnh sửa lại riêng serivce `app` trong file `docker-compose.yml` một chút:
+
+```bash
+version: '3.3'
+services:
+    # service khác
+
+  app:
+    image: 192.168.56.101:5000/go-app
+    # các tag khác
+    deploy:
+      replicas: 3
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.myapp.rule=Host(`domain.lc`)"
+        - "traefik.http.services.myapp.loadbalancer.server.port=8088"
+    # các tag khác
+
+    # service khác
+```
+
+Sau đó deploy lại và đây là kết quả:
+
+![Alt text](image.png)
 
 
