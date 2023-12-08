@@ -40,6 +40,12 @@ Ví dụ ở đây tôi đặt tên miền là `domain.lc`
 
 ## 2. Deploy reverse-proxy stack
 
+Trước hết chúng ta cần tạo ra một network tên là `traefik-net`:
+
+```bash
+docker network create -d overlay traefik-net
+```
+
 Bây giờ chúng ta sẽ vào trong máy ảo `manager01`, sau đó cd vào thư mục chứa file `reverse-proxy.yml` rồi gõ lệnh:
 
 ```bash
