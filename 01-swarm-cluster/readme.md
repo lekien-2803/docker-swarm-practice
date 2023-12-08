@@ -5,7 +5,7 @@ Khởi tạo docker swarm với lệnh:
 docker swarm init --advertise-addr 192.168.56.101
 ```
 
-Trong đó `192.168.56.101` là ip của máy `manager01`.
+Trong đó `192.168.56.101` là ip của máy `manager01` (Trong `Vagrantfile` đã cấu hình sẵn ip tĩnh cho các máy).
 
 Sau khi lệnh được thực thi, sẽ có một câu lệnh được trả về có dạng:
 ```bash 
