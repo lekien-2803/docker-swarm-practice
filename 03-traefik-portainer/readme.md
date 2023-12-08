@@ -52,11 +52,17 @@ Bây giờ chúng ta sẽ vào trong máy ảo `manager01`, sau đó cd vào th�
 docker stack deploy -c reverse-proxy.yml reverse-proxy
 ```
 
-Bây giờ các bạn sử dụng browser ở máy thật, nhập địa chỉ `portainer.lc:9000` thì sẽ có kết quả:
+Tiếp theo là đến `portainer`:
+
+```bash
+docker stack deploy -c portainer-agent-stack.yml portainer
+```
+
+Bây giờ các bạn sử dụng browser ở máy thật, nhập địa chỉ `domain.lc:9000` thì sẽ có kết quả:
 
 ![Alt text](./images/portainer.png)
 
-Nhập địa chỉ `traefik.lc:8888` thì có kết quả:
+Nhập địa chỉ `domain.lc:8889` thì có kết quả:
 
 ![Alt text](./images/traefik.png)
 
