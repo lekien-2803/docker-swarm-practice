@@ -1,26 +1,30 @@
-#  Sử dụng Docker Stack
+#  Sử dụng Docker Registry
 
-Ở bài này chúng ta sẽ deploy một ứng dụng web đơn giản có kết nối với database.
+Từ đầu đến giờ chúng ta mới chỉ deploy những service đơn giản, sử dụng những images có sẵn trên Docker Hub nên các service này luôn chạy ổn định, kể cả khi chúng ta có đột ngột tắt một máy ảo đi chăng nữa, Swarm cũng sẽ tự điều chỉnh service đồng đều cho hai máy còn lại.
 
-Đầu tiên các bạn hãy clone repo này về:
+Tuy nhiên, trong thực tế web app của chúng ta phải tự làm, do đó image cho web app đó chúng ta phải tự build từ `Dockerfile`.
 
-```bash
-git clone https://github.com/lekien-2803/postgres-init-people
-```
+Ta sẽ cùng làm bài tập này để hiểu lý do vì sao cần sử dụng Docker Registry.
 
-Trong repo này có chứa web app golang và file `init-data.sql` để khởi tạo bảng và dữ liệu. 
+## 1. Sử dụng local image
+
+Trong folder bài này có chứa một folder `simple-app` có chứa một golang web app, một file `init-data.sql` để khởi tạo bảng và dữ liệu, `docker-compose.yml` và `Dockerfile`.
 
 Giờ ta sẽ cd vào repo này, nơi có chứa cả `docker-compose.yml` và `Dockerfile`.
 
 Trước hết là cần phải build ra được image cho web app từ `Dockerfile`:
 
+
 ```bash
-docker build -t my-golang-app:lastest .
-# my-golang-app là tên image và nó phải trùng với tag image của service app ở trong file docker-compose.yml
+docker build -t go-app:latest .
 ```
+
+* `go-app` là tên image và nó phải trùng với tag image của service `app` ở trong file docker-compose.yml
 
 Sau khi có image, ta sẽ deploy lên bằng lệnh:
 
 ```bash
 docker stack deploy -c docker-compose.yml my-stack
 ```
+
+
