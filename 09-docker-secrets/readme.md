@@ -42,8 +42,10 @@ rm postgres_password.txt
 
 ## 2. Deploy service PostgreSQL
 
-Ở trong folder này đã có file `docker-compose.yml` cấu hình sẵn một service postgres đơn giản. Các bạn cd vào folder bài 09 này và sử dụng lệnh để deploy:
+Ở trong folder này đã có file `docker-compose.yml` cấu hình sẵn một service postgres và adminer đơn giản. Các bạn cd vào folder bài 09 này và sử dụng lệnh để deploy:
 
 ```bash
 docker stack deploy -c docker-compose.yml postgres
 ```
+
+Ok, bây giờ ta sẽ sử dụng browser trên máy thật, truy cập vào url `domain.lc:8081`:

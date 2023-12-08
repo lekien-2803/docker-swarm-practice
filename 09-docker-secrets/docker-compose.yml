@@ -1,4 +1,4 @@
-version: '3.1'
+version: '3.7'
 
 services:
   db:
@@ -7,8 +7,18 @@ services:
       POSTGRES_PASSWORD_FILE: /run/secrets/postgres_password
     secrets:
       - postgres_password
+    networks:
+      - backend
+
+  adminer:
+    image: adminer
     ports:
-      - "5432:5432"
+      - "8081:8080"
+    networks:
+      - backend
+
+networks:
+  backend:
 
 secrets:
   postgres_password:
