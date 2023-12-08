@@ -49,3 +49,16 @@ docker stack deploy -c docker-compose.yml postgres
 ```
 
 Ok, bây giờ ta sẽ sử dụng browser trên máy thật, truy cập vào url `domain.lc:8081`:
+
+![Alt text](./images/adminer.png)
+
+Nếu đăng nhập vào thành công thì có nghĩa là docker secret đã thực hiện đúng chức năng của mình:
+
+![Alt text](./images/login.png)
+
+## Lưu ý:
+- Secret trong Docker không được mã hóa trong quá trình truyền tải giữa client và Docker Swarm manager. Đảm bảo rằng kết nối của bạn an toàn (ví dụ, sử dụng HTTPS).
+
+- Docker secret chỉ được hỗ trợ trong Swarm mode.
+
+- Secrets không thể bị xóa hoặc thay đổi một khi đã được tạo, nếu cần thay đổi, bạn phải tạo secret mới.
