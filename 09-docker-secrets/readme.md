@@ -56,9 +56,13 @@ Nếu đăng nhập vào thành công thì có nghĩa là docker secret đã th�
 
 ![Alt text](./images/login.png)
 
+Kiểm tra trong menu `Secrets` là sẽ thấy tên của secret ta vừa tạo:
+
+![Alt text](./images/secret.png)
+
 ## Lưu ý:
 - Secret trong Docker không được mã hóa trong quá trình truyền tải giữa client và Docker Swarm manager. Đảm bảo rằng kết nối của bạn an toàn (ví dụ, sử dụng HTTPS).
 
 - Docker secret chỉ được hỗ trợ trong Swarm mode.
 
-- Secrets không thể bị xóa hoặc thay đổi một khi đã được tạo, nếu cần thay đổi, bạn phải tạo secret mới.
+- Secrets không thể bị thay đổi một khi đã được tạo, nếu cần thay đổi, bạn phải tạo secret mới.
