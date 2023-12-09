@@ -1,5 +1,13 @@
 # Tạo một Swarm Cluster
 
+## Yêu cầu
+
+Tạo ra một Swarm với 3 node, trong đó có hai máy là manager và một máy worker. Trong ba máy ảo ubuntu đã tạo theo phần hướng dẫn đã đặt tên sẵn là `manager01`, `manager02` và `worker01`.
+
+Hãy khởi tạo Docker Swarm Cluster tại máy `manager01` rồi cho hai máy còn lại join vào swarm này.
+
+## Thực hành
+
 Khởi tạo docker swarm với lệnh:
 ```bash
 docker swarm init --advertise-addr 192.168.56.101
