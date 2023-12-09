@@ -2,6 +2,12 @@
 
 Trong bài này, chúng ta sẽ sử dụng nginx, một web server phổ biến, làm service để deploy.
 
+## Yêu cầu
+
+Hãy deploy một service đơn giản như nginx lên docker swarm. Sau khi deploy lên thì phải truy cập vào cổng 8081 để có thể nhìn thấy giao diện của nginx.
+
+## Thực hành
+
 Trên máy Manager, hãy mở terminal và chạy lệnh sau để tạo một service mới với tên my-web:
 
 ```bash
