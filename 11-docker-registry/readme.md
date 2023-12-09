@@ -10,7 +10,7 @@ Ta sẽ cùng làm bài tập này để hiểu lý do vì sao cần sử dụng
 
 Trong folder bài này có chứa một folder `simple-app` có chứa một golang web app, một file `init-data.sql` để khởi tạo bảng và dữ liệu, `docker-compose.yml` và `Dockerfile`.
 
-Giờ ta sẽ cd vào repo này, nơi có chứa cả `docker-compose.yml` và `Dockerfile`.
+Giờ ta sẽ cd vào folder `simple-app`, nơi có chứa cả `docker-compose.yml` và `Dockerfile`.
 
 Trước hết là cần phải build ra được image cho web app từ `Dockerfile`:
 
