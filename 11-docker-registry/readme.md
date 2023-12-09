@@ -76,7 +76,13 @@ docker push localhost:5000/go-app
 
 Ta truy cập vào hai máy node còn lại là `manager02` và `worker01`. 
 
-Sau đó chỉnh sửa hoặc tạo file `/etc/docker/daemon.json` trên mỗi node:
+Sau đó chỉnh sửa hoặc tạo file `/etc/docker/daemon.json` trên mỗi node với lệnh:
+
+```bash
+vim /etc/docker/daemon.json
+```
+
+Với nội dung:
 
 ```bash
 {
