@@ -90,7 +90,7 @@ Với nội dung:
 }
 ```
 
-Ta restart Docker Daemon trên mỗi node:
+Ta restart Docker Daemon trên hai node vừa sửa:
 
 ```bash
 sudo systemctl restart docker
