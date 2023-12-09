@@ -31,11 +31,11 @@ Như các bạn có thể thấy, hai services `adminer` và `postgres` đã có
 
 Nhưng service `go-app` của chúng ta chỉ có thể chạy trên node `manager01` - cũng chính là node mà ta vừa build ra được image của `go-app`:
 
-![Alt text](services.png)
+![Alt text](./images/services.png)
 
 Ngay cả khi chúng ta scale up thì cũng không thể hoạt động ở trên hai node còn lại được:
 
-![Alt text](rejected.png)
+![Alt text](./images/rejected.png)
 
 * Liên tục bị rejected
 
@@ -115,6 +115,6 @@ services:
 
 Sau đó deploy lại và đây là kết quả:
 
-![Alt text](image.png)
+![Alt text](./images/success.png)
 
 
