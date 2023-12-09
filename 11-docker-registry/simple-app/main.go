@@ -30,7 +30,7 @@ func main() {
     }
 
     // Tạo chuỗi kết nối với mật khẩu
-    connStr := fmt.Sprintf("user=root dbname=demo sslmode=disable host=postgres password=%s", password)
+    connStr := fmt.Sprintf("user=postgres dbname=demo sslmode=disable host=postgres password=%s", password)
     
 
 
