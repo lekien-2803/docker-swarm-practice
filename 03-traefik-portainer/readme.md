@@ -1,6 +1,16 @@
+# Deploy Portainer và Traefik
 Khi làm việc với Docker Swarm, chúng ta nên sử dụng Portainer để dễ dàng quản lý Docker environment. Bên cạnh đó chúng ta cũng cần sử dụng một reverse-proxy cũng như là load balancer, vậy nên ta sẽ sử dụng Traefik.
 
 Trong bài tập này, ta sẽ deploy hai service này lên. Trong đây đã có sẵn một file là `reverse-proxy` chứa cấu hình traefik và một file `protainer-agent-stack` chứa cấu hình của portainer.
+
+## Yêu cầu
+
+Deploy thành công hai service. Mở được giao diện của hai service này trên browser của máy thật bằng đường dẫn:
+
+* Portainer: `domain.lc:9000`
+
+* Traefik: `domain.lc:8889`
+
 
 ## 1. Cài đặt DNS
 
