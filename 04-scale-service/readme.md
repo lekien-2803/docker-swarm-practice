@@ -1,5 +1,8 @@
 # Quản lý Services
-Ta sẽ quản lý services nginx từ [bài 02](https://github.com/lekien-2803/docker-swarm-practice/tree/main/02-deploy-simple-service).
+
+## Yêu cầu
+
+Ta sẽ scale up và scale down service nginx từ [bài 02](https://github.com/lekien-2803/docker-swarm-practice/tree/main/02-deploy-simple-service).
 
 ## 1. Scale up một service: 
 Ta gõ lệnh:
