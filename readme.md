@@ -1,7 +1,7 @@
 # Thực hành với docker-swarm
 *Yêu cầu: Đã có 3 máy ảo ubuntu, chi tiết có thể tham khảo tại [đây](https://github.com/lekien-2803/docker-swarm-practice/tree/main/virtual-machine).*
 
-*Lưu ý: Ngoài stack `portainer` và `traefik` có trong bài 03 ra, sau khi làm xong mỗi bài bạn nên xóa hết stacks, images, networks trong swarm của bài đó để có thể dễ debug, theo dõi.*
+*Lưu ý: Ngoài stack `portainer` và `traefik` có trong bài 03 ra, sau khi làm xong mỗi bài bạn nên xóa hết stacks, images, networks trong swarm của bài đó để có thể dễ dàng hơn trong việc thoe dõi và troubleshooting.*
 
 ## 1. Basic:
 
