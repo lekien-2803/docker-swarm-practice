@@ -33,7 +33,9 @@ services:
     networks:
       - my-overlay
       - traefik-net
-
+    secrets:
+      - postgres_password
+      
   web:
     image: nginx:alpine
     ports:
