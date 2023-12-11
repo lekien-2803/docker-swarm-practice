@@ -17,7 +17,7 @@ services:
   app:
     image: 192.168.56.101:5000/go-app
     ports:
-      - "8088:8080"
+      - "8088:8088"
     depends_on:
       - postgres
     environment:
