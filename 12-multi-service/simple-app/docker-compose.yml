@@ -35,7 +35,7 @@ services:
       - traefik-net
     secrets:
       - postgres_password
-      
+
   web:
     image: nginx:alpine
     ports:
@@ -45,6 +45,10 @@ services:
     configs:
       - source: nginx_conf
         target: /etc/nginx/conf.d/default.conf    
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.myweb.rule=Host(`domain.lc`)"
+      - "traefik.http.routers.myweb.entrypoints=web"
 
   adminer:
     image: adminer:latest
