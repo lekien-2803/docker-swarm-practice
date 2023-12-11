@@ -29,7 +29,7 @@
     </table>
 
     <script>
-        fetch('http://app:8088/people')
+        fetch('http://localhost:8088/people')
             .then(response => response.json())
             .then(data => {
                 let table = document.getElementById('peopleTable');
