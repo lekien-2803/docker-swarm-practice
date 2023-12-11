@@ -19,7 +19,15 @@ Build image:
 docker build -t go-app:latest .
 ```
 
-## 2. Tạo Docker Secret
+## 2. Khởi tạo image web
+
+Các bạn cd vào trong folder `resources` rồi build:
+
+```bash
+docker build -t my-web:latest .
+```
+
+## 3. Tạo Docker Secret
 
 Tạo một file tạm thời tên là `postgres_password.txt` trên máy ảo `manager01`:
 
@@ -47,7 +55,7 @@ Sau khi tạo secret, xóa file tạm để đảm bảo rằng mật khẩu kh�
 rm postgres_password.txt
 ```
 
-## 3. Tạo Docker Config
+## 4. Tạo Docker Config
 
 Các bạn tạo một file có tên là `default.conf`:
 
@@ -76,9 +84,9 @@ Tải file này lên Docker config:
 docker config create nginx_conf default.conf
 ```
 
-***Lưu ý: Nếu các bạn vẫn còn giữ Registry từ bài 11 thì không cần làm lại bước 4 và bước 5.***
+***Lưu ý: Nếu các bạn vẫn còn giữ Registry từ bài 11 thì không cần làm lại bước 5 và bước 6.***
 
-## 4. Thiết lập Private Docker Registry
+## 5. Thiết lập Private Docker Registry
 
 Chạy Private Docker Registry trên node `manager01`:
 
@@ -86,7 +94,7 @@ Chạy Private Docker Registry trên node `manager01`:
 docker stack deploy -c registry.yml registry
 ```
 
-## 5. Cấu hình các Node Swarm để trust Registry
+## 6. Cấu hình các Node Swarm để trust Registry
 
 Ta truy cập vào hai máy node còn lại là `manager02` và `worker01`. 
 
@@ -110,21 +118,36 @@ Ta restart Docker Daemon trên hai node vừa sửa:
 sudo systemctl restart docker
 ```
 
-## 6. Tag và push image vào Registry
+## 7. Tag và push image vào Registry
 
+### 7.1. Tag và push go-app
 Tag image `go-app` vào Registry:
 
 ```bash
 docker tag go-app localhost:5000/go-app
 ```
 
-Push image vào Registry:
+Push image `go-app` vào Registry:
 
 ```bash
 docker push localhost:5000/go-app
 ```
 
-## 7. Deploy multi-service stack
+### 7.2. Tag và push my-web
+
+Tag image `my-web` vào Registry:
+
+```bash
+docker tag my-web localhost:5000/my-web
+```
+
+Push image `my-web` vào Registry:
+
+```bash
+docker push localhost:5000/my-web
+```
+
+## 8. Deploy multi-service stack
 
 Giờ chúng ta sẽ deploy stack:
 
