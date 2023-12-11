@@ -41,6 +41,7 @@ Ngay cả khi chúng ta scale up thì cũng không thể hoạt động ở trê
 
 Bấm vào các task bị rejected thì ta thấy:
 
+![Alt text](./images/no-image.png)
 
 Vì vậy ta phải thiết lập Registry để các node khác cũng có thể sử dụng được image này.
 
