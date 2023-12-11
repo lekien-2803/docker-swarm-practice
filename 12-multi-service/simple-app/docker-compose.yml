@@ -37,7 +37,7 @@ services:
   web:
     image: nginx:alpine
     ports:
-      - "8088:80"
+      - "8090:8090"
     networks:
       - my-overlay
     configs:

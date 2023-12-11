@@ -58,7 +58,7 @@ Nội dung bên trong sẽ là:
 
 ```nginx
 server {
-    listen       80;
+    listen       8090;
     server_name  localhost;
 
     location /list-people {
@@ -76,7 +76,7 @@ Tải file này lên Docker config:
 docker config create nginx_conf default.conf
 ```
 
-*Lưu ý: Nếu các bạn vẫn còn giữ Registry từ bài 11 thì không cần làm lại bước 4 và bước 5.*
+***Lưu ý: Nếu các bạn vẫn còn giữ Registry từ bài 11 thì không cần làm lại bước 4 và bước 5.***
 
 ## 4. Thiết lập Private Docker Registry
 
