@@ -55,7 +55,7 @@ docker stack rm go-app
 Chạy Private Docker Registry trên node `manager01`:
 
 ```bash
-docker run -d -p 5000:5000 --name registry registry:2
+docker stack deploy -c registry.yml registry
 ```
 
 ## 3. Tag và push image vào Registry
@@ -123,4 +123,6 @@ Sau đó deploy lại và đây là kết quả:
 
 ![Alt text](./images/success.png)
 
+Truy cập vào url `domain.lc:8088/people` ta có:
 
+![Alt text](./images/people.png)
