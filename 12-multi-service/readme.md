@@ -70,8 +70,8 @@ server {
     server_name  localhost;
 
     location /list-people {
-        root   /usr/share/nginx/html;
-        index  people.html people.htm;
+        alias /usr/share/nginx/html/;
+        try_files /people.html =404;
     }
 
     # Cấu hình khác...
