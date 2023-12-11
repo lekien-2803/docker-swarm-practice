@@ -37,7 +37,7 @@ services:
       - postgres_password
 
   web:
-    image: nginx:alpine
+    image: 192.168.56.101:5000/my-web
     ports:
       - "8090:8090"
     networks:
