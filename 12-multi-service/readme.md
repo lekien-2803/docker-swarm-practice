@@ -63,7 +63,7 @@ server {
 
     location /list-people {
         root   /usr/share/nginx/html;
-        index  index.html index.htm;
+        index  people.html people.htm;
     }
 
     # Cấu hình khác...
