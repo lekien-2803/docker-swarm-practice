@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Danh sách người dùng</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <h2>Danh sách người dùng</h2>
+    <table id="peopleTable">
+        <tr>
+            <th>ID</th>
+            <th>Họ</th>
+            <th>Tên</th>
+            <th>Giới tính</th>
+            <th>Ngày sinh</th>
+        </tr>
+    </table>
+
+    <script>
+        fetch('http://localhost:8088/people')
+            .then(response => response.json())
+            .then(data => {
+                let table = document.getElementById('peopleTable');
+                data.forEach(person => {
+                    let row = table.insertRow();
+                    let id = row.insertCell(0);
+                    let firstName = row.insertCell(1);
+                    let lastName = row.insertCell(2);
+                    let gender = row.insertCell(3);
+                    let dob = row.insertCell(4);
+
+                    id.innerHTML = person.id;
+                    firstName.innerHTML = person.first_name;
+                    lastName.innerHTML = person.last_name;
+                    gender.innerHTML = person.gender;
+                    dob.innerHTML = person.date_of_birth;
+                });
+            });
+    </script>
+</body>
+</html>
