@@ -76,3 +76,5 @@ secrets:
 configs:
   nginx_conf:
     external: true    
+  init_data_sql:
+    external: true
