@@ -11,7 +11,8 @@ Bài này cũng tương tự như bài 11, nhưng chúng ta sẽ có một số 
 
 - Áp dụng kiến thức về secret trong bài 09, ta sẽ lưu mật khẩu của database trong file secret chứ không để lộ ra trong tag `enviroment`. Cùng với đó là sử dụng config trong bài 10 để cấu hình web hiển thị ở đường dẫn `domain.lc:8088/list-people`.
 
-## 1. Khởi tạo image go-app
+## 1. Build image
+### 1.1. Khởi tạo image go-app
 
 Build image:
 
@@ -19,7 +20,7 @@ Build image:
 docker build -t go-app:latest .
 ```
 
-## 2. Khởi tạo image web
+### 1.2. Khởi tạo image web
 
 Các bạn cd vào trong folder `resources` rồi build:
 
@@ -27,7 +28,7 @@ Các bạn cd vào trong folder `resources` rồi build:
 docker build -t my-web:latest .
 ```
 
-## 3. Tạo Docker Secret
+## 2. Tạo Docker Secret
 
 Tạo một file tạm thời tên là `postgres_password.txt` trên máy ảo `manager01`:
 
@@ -55,8 +56,8 @@ Sau khi tạo secret, xóa file tạm để đảm bảo rằng mật khẩu kh�
 rm postgres_password.txt
 ```
 
-## 4. Tạo Docker Config
-
+## 3. Tạo Docker Config
+### 3.1. Config cho web
 Các bạn tạo một file có tên là `default.conf`:
 
 ```bash
@@ -83,6 +84,16 @@ Tải file này lên Docker config:
 ```bash
 docker config create nginx_conf default.conf
 ```
+
+## 3.2. Config cho database
+
+Tải file `init-data.sql` lên config để các node có thể sử dụng.
+
+```bash
+docker config create init_data_sql init-data.sql
+```
+
+*(vì đây là bài tập mẫu, các dữ liệu trong file này không phải thông tin nhạy cảm cần bảo mật, ta có thể dùng config)*
 
 ***Lưu ý: Nếu các bạn vẫn còn giữ Registry từ bài 11 thì không cần làm lại bước 5 và bước 6.***
 

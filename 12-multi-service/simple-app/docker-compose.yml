@@ -11,10 +11,12 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - ./init-data.sql:/docker-entrypoint-initdb.d/init-data.sql
       - postgres_data:/var/lib/postgresql/data
     networks:
       - my-overlay
+    configs:
+      - source: init_data_sql
+        target: /docker-entrypoint-initdb.d/init-data.sql
 
   app:
     image: 192.168.56.101:5000/go-app
