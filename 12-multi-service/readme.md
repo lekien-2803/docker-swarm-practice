@@ -95,9 +95,9 @@ docker config create init_data_sql init-data.sql
 
 *(vì đây là bài tập mẫu, các dữ liệu trong file này không phải thông tin nhạy cảm cần bảo mật, ta có thể dùng config)*
 
-***Lưu ý: Nếu các bạn vẫn còn giữ Registry từ bài 11 thì không cần làm lại bước 5 và bước 6.***
+***Lưu ý: Nếu các bạn vẫn còn giữ Registry từ bài 11 thì không cần làm lại bước 4 và bước 5.***
 
-## 5. Thiết lập Private Docker Registry
+## 4. Thiết lập Private Docker Registry
 
 Chạy Private Docker Registry trên node `manager01`:
 
@@ -105,7 +105,7 @@ Chạy Private Docker Registry trên node `manager01`:
 docker stack deploy -c registry.yml registry
 ```
 
-## 6. Cấu hình các Node Swarm để trust Registry
+## 5. Cấu hình các Node Swarm để trust Registry
 
 Ta truy cập vào hai máy node còn lại là `manager02` và `worker01`. 
 
@@ -129,9 +129,9 @@ Ta restart Docker Daemon trên hai node vừa sửa:
 sudo systemctl restart docker
 ```
 
-## 7. Tag và push image vào Registry
+## 6. Tag và push image vào Registry
 
-### 7.1. Tag và push go-app
+### 6.1. Tag và push go-app
 Tag image `go-app` vào Registry:
 
 ```bash
@@ -144,7 +144,7 @@ Push image `go-app` vào Registry:
 docker push localhost:5000/go-app
 ```
 
-### 7.2. Tag và push my-web
+### 6.2. Tag và push my-web
 
 Tag image `my-web` vào Registry:
 
@@ -158,7 +158,7 @@ Push image `my-web` vào Registry:
 docker push localhost:5000/my-web
 ```
 
-## 8. Deploy multi-service stack
+## 7. Deploy multi-service stack
 
 Giờ chúng ta sẽ deploy stack:
 
